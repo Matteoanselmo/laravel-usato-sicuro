@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.car-bg{
+    background-image: url(/image/logged.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}

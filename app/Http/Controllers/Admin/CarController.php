@@ -37,18 +37,29 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $request->validate([
+            'numero_telaio' => 'unique:cars,numero_telaio,id|required|max:20',
+            'model' => 'required|max:20',
+            'porte' => 'required|max:5|numeric',
+            'data_immatricolazione' => 'required',
+            'marca' => 'required|max:20',
+            'alimentazione' => 'required',
+            'prezzo' => 'required|numeric',
+        ]);
         $car = new Car();
-            $car->numero_telaio= $data["numero_telaio"];
-            $car->model=$data["model"]; 
-            $car->porte=$data["porte"];
-            $car->data_immatricolazione=$data["data_immatricolazione"];
-            $car->marca=$data["marca"];
-            $car->alimentazione=$data["alimentazione"];
-            $car->prezzo=$data["prezzo"];
-            $car->save();
+        $data = $request->all();
+            // $car->numero_telaio= $data["numero_telaio"];
+            // $car->model=$data["model"];
+            // $car->porte=$data["porte"];
+            // $car->data_immatricolazione=$data["data_immatricolazione"];
+            // $car->marca=$data["marca"];
+            // $car->alimentazione=$data["alimentazione"];
+            // $car->prezzo=$data["prezzo"];
+        $car->fill($data);
 
-            return redirect()->route("admin.cars.show", $car->id);
+        $car->save();
+
+            return redirect()->route("admin.cars.show", $car->id)->with('message', 'Car created correctly');
     }
 
     /**
@@ -71,7 +82,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        return view("admin.cars.edit", compact("car"));  
+        return view("admin.cars.edit", compact("car"));
     }
 
     /**
@@ -85,7 +96,7 @@ class CarController extends Controller
     {
         $data = $request->all();
         $car->numero_telaio= $data["numero_telaio"];
-        $car->model=$data["model"]; 
+        $car->model=$data["model"];
         $car->porte=$data["porte"];
         $car->data_immatricolazione=$data["data_immatricolazione"];
         $car->marca=$data["marca"];
@@ -104,6 +115,6 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
-        return redirect()->route("admin.cars.index", $car)->with("message","Cars è stato eliminato con successo!");
+        return redirect()->route("admin.cars.index", $car)->with("message","$car->name è stato eliminato con successo!");
     }
 }

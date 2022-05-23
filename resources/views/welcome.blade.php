@@ -11,9 +11,12 @@
 
         <!-- Styles -->
         <style>
+
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background-image: url('/image/logged.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                color: white;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -49,7 +52,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: white;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -71,7 +74,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Profile</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -94,9 +97,9 @@
                 <div class="links">
                     {{-- <a href="{{route("admin.cars.index")}}">Cars</a> --}}
                     @if (Auth::check())
-                    <a href="{{route('admin.cars.index')}}">Cars</a>
+                    <a href="{{route('admin.cars.index')}}">Cars List</a>
                         @else
-                        <a href="{{route('register')}}">Registati!</a>
+                        <a href="{{route('register')}}" >Registati!</a>
                     @endif
                 </div>
             </div>

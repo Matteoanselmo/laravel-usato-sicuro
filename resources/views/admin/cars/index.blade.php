@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<div>
+
     @if (session("message"))
-        <div class="allert allert-success">
+        <div class="alert alert-warning">
             {{session("message")}}
         </div>
     @endif
-    <h1 class="text-center">
+    <h1 class="text-center pt-5">
         Lista auto
     </h1>
     {{-- <a href="{{route("home")}}">Torna alla Home</a> --}}
@@ -23,7 +25,7 @@
         @foreach ($cars as $car)
         <div class="card text-center m-5 p-5 bg-primary text-white shadow">
             <div class="card-body">
-                <h3 class="card-title">
+                <h3 class="card-title text-capitalize">
                     {{$car->marca}}
                 </h3>
                 <h4 class="card-subtitle mb-3">
@@ -46,6 +48,7 @@
 
         @endforeach
     </div>
+</div>
 @endsection
 
 
