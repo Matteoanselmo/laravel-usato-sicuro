@@ -61,6 +61,9 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .text-capitalize{
+                text-transform: capitalize;
+            }
         </style>
     </head>
     <body>
@@ -80,13 +83,21 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Cars
+                <div class="title m-b-md text-capitalize">
+                    @if (Auth::check())
+                        Bentornato {{Auth::user()['name']}}
+                        @else
+                            Benvenuto su UsatoSicuro.it
+                    @endif
                 </div>
 
                 <div class="links">
-                    <a href="{{route("admin.cars.index")}}">Cars</a>
-        
+                    {{-- <a href="{{route("admin.cars.index")}}">Cars</a> --}}
+                    @if (Auth::check())
+                    <a href="{{route('admin.cars.index')}}">Cars</a>
+                        @else
+                        <a href="{{route('register')}}">Registati!</a>
+                    @endif
                 </div>
             </div>
         </div>

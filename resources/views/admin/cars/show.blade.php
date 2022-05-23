@@ -1,27 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <div>
+@extends('layouts.app')
+
+@section('content')
+<div class="container-fluid">
+    <div class="text-secondary text-center">
         <h1>
             Auto Singola
         </h1>
-        <a href="{{route("home")}}">Home page</a>
-        <a href="{{route("admin.cars.index")}}">Lista Completa</a>
-        <h3>
-            {{$car->model}} - {{$car->marca}}
-        </h3>
+        <div class="mb-4 d-flex justify-content-around">
+            <a  href="{{route('welcome')}}">
+                    <button class="btn btn-secondary">
+                        Home page
+                    </button>
+            </a>
+            <a href="{{route("admin.cars.index")}}">
+                <button class="btn btn-secondary">
+                    Lista completa
+                </button>
+            </a>
+        </div>
+        <div class="card shadow mb-4 mx-4">
+            <div class="card-body">
+                <h5 class="card-title text-uppercase">{{$car->marca}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{$car->model}} </h6>
+                <p class="card-text">{{$car->alimentazione}}</p>
+                <p class="card-text">€ {{$car->prezzo}}</p>
+            </div>
+
+        </div>
         <form action="{{route("admin.cars.destroy", $car)}}" method="POST">
             @csrf
             @method("DELETE")
-            <button type="submit">Elimina</button>
+            <button class="btn  btn-info" type="submit">Elimina</button>
         </form>
     </div>
-    
-</body>
-</html>
+</div>
+@endsection
+
+
