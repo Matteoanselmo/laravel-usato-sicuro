@@ -9,10 +9,10 @@
         @endif
     <div class="container-fluid text-white">
         <div class="text-secondary text-center">
-            <h1 class="text-white pt-4">
-                Auto Singola
+            <h1 class="text-white pt-4 text-uppercase">
+                {{$car->marca}}
             </h1>
-            <div class="mb-4 d-flex justify-content-around">
+            <div class="mb-4 d-flex justify-content-evenly">
                 <a  href="{{route('welcome')}}">
                         <button class="btn btn-secondary">
                             Home page
@@ -24,7 +24,7 @@
                     </button>
                 </a>
             </div>
-            <div class="card shadow mb-4 mx-4 w-75 mx-auto">
+            <div class="card shadow mb-4 mx-4 w-25 mx-auto">
                 <div class="card-body">
                     <h5 class="card-title text-uppercase">{{$car->marca}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{$car->model}} </h6>
